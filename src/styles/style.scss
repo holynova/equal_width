@@ -1,5 +1,20 @@
 html {
   body {
-    .wrapper {}
+    .wrapper {
+      width: 62%;
+      margin: 0 auto;
+      .output{
+        // padding: 16px;
+        border: 1px solid black;
+        width: 400px;
+        min-height: 600px;
+        background: pink;
+        // text-align: center;
+        .output-row{
+          border-bottom: 1px dashed #ccc;
+          line-height: 1.6;
+        }
+      }
+    }
   }
 }
