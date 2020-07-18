@@ -55,15 +55,20 @@ function getPerfectFontSize(text = '', targetWidth = 400) {
   for (let i = startSize + 1; i <= maxSize; i += 1) {
     // for (let i = maxSize - 1; i >= 12; i -= 1) {
     const width = measureWidth(text, i);
-    const delta = Math.abs(width - targetWidth);
-    if (delta < currentMin) {
-      currentMin = delta;
+    // const diff = Math.abs(width - targetWidth);
+    const diff = targetWidth - width;
+    if (diff < 0) {
+      break;
+    }
+
+    if (diff < currentMin) {
+      currentMin = diff;
       perfectSize = i;
       // break;
     }
-    if (delta > targetWidth) {
-      break;
-    }
+    // if (diff >= targetWidth) {
+    //   break;
+    // }
   }
   return perfectSize;
 
