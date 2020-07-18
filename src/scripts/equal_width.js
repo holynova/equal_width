@@ -47,17 +47,22 @@ function measureWidth(str, size) {
 function getPerfectFontSize(text = '', targetWidth = 400) {
   // const lengthArr = [];
   const maxSize = 999;
-  let perfectSize = 12;
+  const startSize = 1;
+  let perfectSize = startSize;
   let currentMin = measureWidth(text, perfectSize);
 
 
-  for (let i = perfectSize + 1; i < maxSize; i += 1) {
+  for (let i = startSize + 1; i <= maxSize; i += 1) {
+    // for (let i = maxSize - 1; i >= 12; i -= 1) {
     const width = measureWidth(text, i);
     const delta = Math.abs(width - targetWidth);
     if (delta < currentMin) {
       currentMin = delta;
       perfectSize = i;
       // break;
+    }
+    if (delta > targetWidth) {
+      break;
     }
   }
   return perfectSize;
