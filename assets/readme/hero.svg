@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="360" viewBox="0 0 1200 360"
+     role="img" aria-labelledby="title desc">
+  <title id="title">等宽排版辅助 equal-width — 长短不一的文字，自动调字号排成一样宽</title>
+  <desc id="desc">白底标题：等宽排版辅助，副标题长短不一的文字，自动调字号，排成一样宽；右侧粉色面板里四行诗字号递减但宽度相等，两条虚线标示左右边界。</desc>
+
+  <g id="bg">
+    <rect width="1200" height="360" rx="26" fill="#ffffff"/>
+    <rect x="1" y="1" width="1198" height="358" rx="25" fill="none" stroke="#e5e5e5" stroke-width="2"/>
+  </g>
+
+  <g id="title-block" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="56" y="62" font-size="19" letter-spacing="3" fill="#666666">等宽文字生成器 · EQUAL-WIDTH TEXT</text>
+    <text x="56" y="130" font-size="62" font-weight="700" fill="#222222">等宽排版辅助</text>
+    <text x="56" y="172" font-size="23" fill="#222222">equal-width — 长短不一的文字，自动调字号</text>
+    <text x="56" y="208" font-size="19" fill="#666666">每行字数不同，字号自动适配，排出来一样宽。</text>
+    <g id="chips" font-size="18" fill="#222222" text-anchor="middle">
+      <g><rect x="56" y="238" width="150" height="36" rx="18" fill="#f5f5f5" stroke="#dddddd" stroke-width="1.5"/><text x="131" y="262">目标宽度 400px</text></g>
+      <g><rect x="218" y="238" width="162" height="36" rx="18" fill="#f5f5f5" stroke="#dddddd" stroke-width="1.5"/><text x="299" y="262">1–999px 扫描</text></g>
+      <g><rect x="392" y="238" width="150" height="36" rx="18" fill="#f5f5f5" stroke="#dddddd" stroke-width="1.5"/><text x="467" y="262">9 行示例诗</text></g>
+    </g>
+  </g>
+
+  <g id="demo-panel">
+    <g id="panel-bg">
+      <rect x="760" y="48" width="384" height="264" rx="10" fill="#ffc0cb" stroke="#222222" stroke-width="1.5"/>
+    </g>
+    <g id="guides" stroke="#222222" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.45">
+      <line x1="800" y1="54" x2="800" y2="306"/>
+      <line x1="1040" y1="54" x2="1040" y2="306"/>
+    </g>
+    <g id="demo-lines" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" fill="#222222" text-anchor="start">
+      <text x="800" y="164" font-size="118" font-weight="700">当空</text>
+      <text x="800" y="230" font-size="58" font-weight="700">光辉皎洁</text>
+      <text x="800" y="272" font-size="33" font-weight="700">耀乾坤静空阔</text>
+      <text x="800" y="304" font-size="25" font-weight="700">圆满中秋玩争诗哲</text>
+    </g>
+  </g>
+</svg>
