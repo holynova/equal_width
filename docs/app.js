@@ -192,8 +192,10 @@ function placeEditorActions() {
   if (mobile.matches) {
     $('.mast-inner').append($('#export'));
     $('.editor-switch').append($('#copy'));
+    $('#style-panel').append($('.source'));
   } else {
     $('.actions').append($('#copy'), $('#export'));
+    $('.mast-inner').append($('.source'));
   }
   selectEditorTab(selectedTab);
 }

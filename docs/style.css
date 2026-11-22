@@ -127,6 +127,12 @@ dialog.expanded{width:min(720px,calc(100% - 22px))}dialog.expanded .image-well i
     scroll-margin: 12px;
   }
   #style-panel { gap: 1rem; padding: .8rem 0 .3rem; }
+  #style-panel .source {
+    display: inline-flex;
+    justify-self: start;
+    min-height: 44px;
+    color: var(--muted);
+  }
   .tile canvas { max-height: 78px; }
   .select-wrap select, .ratio { min-height: 44px; }
   .swatches { gap: 6px; }

@@ -2,6 +2,8 @@
 
 # 齐行 Typepress · 等宽海报工坊
 
+[在线体验](https://equal-width.xiaosang.cc/) · [GitHub](https://github.com/holynova/equal_width)
+
 长句用小字，短句用大字。齐行逐行测量字形，让每行文字的左右边缘对齐。手机上可以边写边排，把文字粘贴到笔记，或保存成一张海报。
 
 <p align="center"><img src="./assets/readme/lunar-poster.png" width="320" alt="群青色月相海报，月亮、落进了、我的诗里三行中文以不同字号等宽排列"></p>
@@ -19,6 +21,8 @@
 | 1:1 | 1440 × 1440 px |
 | 9:16 | 1440 × 2560 px |
 
+<img src="assets/screenshot.png" width="320" alt="手机海报编辑与实时预览">
+
 ## 本地运行
 
 需要 Python 3。运行 `npm start` 后，在浏览器打开 `http://127.0.0.1:8000`。也可以用任意静态服务器提供 `docs/`。
@@ -30,3 +34,8 @@
 `docs/poster.js` 通过 Canvas 的字形边界计算每行缩放比例，并根据可用高度对整个字块等比缩小。编辑预览和导出共用同一画布。用户的文字仅在设备上处理。
 
 随站提供思源宋体、霞鹜文楷与站酷庆科黄油体的中文字体子集。月面插图来自 Galileo 探测器拍摄的月球照片，经过单色网点处理。详见[素材来源和字体许可](./docs/assets/CREDITS.txt)。
+
+
+推送主分支（`git push origin master`）后，Cloudflare Pages 运行 `npm run build`，发布 `dist/`。
+
+<a href="https://equal-width.xiaosang.cc/"><img src="assets/qr.png" width="112" alt="扫码在手机打开"></a>
