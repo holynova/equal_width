@@ -1,0 +1,13 @@
+Lunar print
+  Source photograph: Earth's Moon, Galileo, PIA00405. NASA/JPL/USGS.
+  https://science.nasa.gov/photojournal/earths-moon/
+  https://commons.wikimedia.org/wiki/File:PIA00405_-_Earth%27s_Moon.tif
+  Adaptation: monochrome halftone and transparency, tinted at render time.
+
+Fonts
+  Noto Serif SC, LXGW WenKai TC, ZCOOL QingKe HuangYou
+  https://github.com/google/fonts/tree/main/ofl/notoserifsc
+  https://github.com/google/fonts/tree/main/ofl/lxgwwenkaitc
+  https://github.com/google/fonts/tree/main/ofl/zcoolqingkehuangyou
+  Bundled static WOFF2 subsets. SIL Open Font License 1.1.
+  The original license and copyright notices are included in fonts/.

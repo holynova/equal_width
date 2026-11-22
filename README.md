@@ -1,56 +1,32 @@
-<p align="right"><a href="README.en.md">English</a></p>
+<p align="right"><a href="./README.en.md">English</a></p>
 
-<p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="等宽排版辅助 equal-width — 长短不一的文字，自动调字号排成一样宽；右侧粉色面板里四行诗字号递减但宽度相等，两条虚线标示左右边界">
-</p>
+# 齐行 Typepress · 等宽海报工坊
 
-<p align="center">
-  <a href="https://xiaosang.cc/equal-width/">▶ 在线体验</a>
-  ·
-  <a href="https://github.com/holynova/equal_width">GitHub 仓库</a>
-</p>
+长句用小字，短句用大字。齐行逐行测量字形，让每行文字的左右边缘对齐。手机上可以边写边排，把文字粘贴到笔记，或保存成一张海报。
 
-equal-width 是一个等宽文字生成器：每行输入长短不一的文字，自动调整字号，使得看起来宽度相等。内置一首 9 行中秋诗做示例——从 1 个字的「月」到 30 多字的长句，点一下 go，全部排成 400px 宽。
+<p align="center"><img src="./assets/readme/lunar-poster.png" width="320" alt="群青色月相海报，月亮、落进了、我的诗里三行中文以不同字号等宽排列"></p>
 
-## 截图
+## 从文字到海报
 
-<p align="center">
-  <img src="./assets/readme/screenshot.png" width="500" alt="点击 go 后的效果：输入框里 9 行长短不一的诗句，下方粉色输出框里每行字号不同但宽度完全相等，月字最大，长句最小">
-</p>
+1. 输入多行文字，或用「换个示例」试排。空行和行首、行尾的空白会自动略去。
+2. 选择月相印记、几何构成或留白书页。可切换四种字体、五种配色和三种画幅。当前草稿会保存在此浏览器。
+3. 「复制排版」同时写入富文本和纯文本。支持 HTML 的编辑器可以保留逐行字号，最终字形取决于目标应用的字体。普通聊天输入框可保留分行。
+4. 「导出海报」生成与画布一致的 PNG。可以下载、在手机上长按保存，或在支持图片剪贴板的浏览器里复制图片。
 
-## 原理
-
-- **逐行扫描字号**：对每一行，从 1px 开始逐像素增大字号，在隐藏的测量区（`.playground`）实测渲染宽度，取宽度不超过 400px 的最大字号（上限 999px）。
-- **真实渲染测量**：不估算字符宽度，直接用浏览器排版结果（`offsetWidth`），中英混排、数字都准。
-- **输出**：每行生成一个 `div`，按算出的字号、`white-space: nowrap` 居中排进 400px 宽的粉色输出框。
-- **计时**：点 go 后在控制台输出生成耗时（`debug.js` 的 `timeIt`）。
-
-## 使用
-
-1. 在输入框里粘贴多行文字（默认已填 9 行中秋示例诗）。
-2. 点 **go**，下方输出框即显示等宽排版结果。
-3. 空行会被自动忽略；每行首尾空格会被去掉。
+| 画幅 | 导出尺寸 |
+| --- | --- |
+| 3:4 | 1440 × 1920 px |
+| 1:1 | 1440 × 1440 px |
+| 9:16 | 1440 × 2560 px |
 
 ## 本地运行
 
-```bash
-npm install
-npm start          # webpack-dev-server 开发服务
-npm run build      # 构建到 dist（webpack 3 + Babel 6 + SCSS）
-```
+需要 Python 3。运行 `npm start` 后，在浏览器打开 `http://127.0.0.1:8000`。也可以用任意静态服务器提供 `docs/`。
 
-构建产物在 `docs/`，也可以直接用静态服务器打开 `docs/index.html` 查看。
+`npm run build` 使用 Node.js 的内置文件 API 将源文件复制到 `dist/`。项目无需安装前端依赖，可以部署在网站根目录或子路径下。
 
-## 技术
+## 实现与素材
 
-- Webpack 3 + Babel 6 + SCSS，核心算法只在 `src/scripts/equal_width.js`（约 100 行）。
-- 测量区 `.playground` 是一个隐藏 div，每次测完即移除临时节点。
+`docs/poster.js` 通过 Canvas 的字形边界计算每行缩放比例，并根据可用高度对整个字块等比缩小。编辑预览和导出共用同一画布。用户的文字仅在设备上处理。
 
-```
-src/index.html              入口：标题、输入框、go 按钮、输出框、测量区
-src/scripts/equal_width.js  核心：分行、逐像素扫描最佳字号、生成输出
-src/scripts/debug.js        日志与耗时统计
-src/scripts/index.js        入口：引入样式与 equal_width
-src/styles/style.scss       输出框样式（400px 宽、粉色底）
-docs/                       构建产物
-```
+随站提供思源宋体、霞鹜文楷与站酷庆科黄油体的中文字体子集。月面插图来自 Galileo 探测器拍摄的月球照片，经过单色网点处理。详见[素材来源和字体许可](./docs/assets/CREDITS.txt)。

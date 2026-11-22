@@ -1,10 +1,55 @@
-<!DOCTYPE html><html lang="en"><head>
-<script
-  defer
-  src="https://cloud.umami.is/script.js"
-  data-website-id="e01c9f78-4607-4e60-b01c-77c8190b12b4"
-  data-domains="holynova.github.io"
-  data-exclude-search="true"
-  data-exclude-hash="true"
-></script>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>equal-width</title><link rel="shortcut icon" href="favicon.png"><link href="index.10f865eb78eabf8905308e460ada587a.css" rel="stylesheet"></head><body><div class="wrapper"><h1>等宽排版辅助</h1><textarea class="input" rows="20" cols="55"></textarea> <button class="button">go</button><div class="output"></div></div><div class="playground"></div><script type="text/javascript" src="index.c01b6c301cd8e92c9ce2.js"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f8f8f5">
+  <meta name="description" content="齐行等宽海报工坊。输入多行文字，自选字体、版式和色彩，实时排印并导出高清海报。">
+  <title>齐行 Typepress · 等宽海报工坊</title>
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="preload" as="font" href="./assets/fonts/notoserifsc-sample.woff2" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./assets/fonts.css">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="e01c9f78-4607-4e60-b01c-77c8190b12b4" data-domains="holynova.github.io" data-exclude-search="true" data-exclude-hash="true"></script>
+</head>
+<body>
+  <header class="mast"><div class="frame mast-inner">
+    <div class="wordmark"><img src="./assets/mark.svg" width="35" height="35" alt=""><b>齐行</b><span>Typepress</span></div>
+    <a class="source" href="https://github.com/holynova/equal_width" target="_blank" rel="noopener"><i data-icon="github"></i><span>GitHub</span></a>
+  </div></header>
+  <main class="frame">
+    <div class="intro">
+      <div><h1>等宽海报工坊<span aria-hidden="true">.</span></h1><p>写下几行字，让每一行恰好等宽。</p></div>
+      <div class="actions"><a class="jump-preview" href="#preview" hidden><i data-icon="frame"></i>看画布</a><button id="copy" class="button" disabled><i data-icon="copy"></i>复制排版</button><button id="export" class="button primary" disabled><i data-icon="download"></i>导出海报</button></div>
+    </div>
+    <div class="workspace">
+      <section class="card preview" id="preview" aria-labelledby="preview-title">
+        <div class="panel-head"><h2 id="preview-title"><i data-icon="frame"></i>画布预览</h2><button id="enlarge" class="icon-button" aria-label="放大预览" title="放大预览"><i data-icon="expand"></i></button></div>
+        <div class="stage">
+          <div class="paper"><canvas id="poster" width="1440" height="1920" role="img" aria-label="等宽海报预览"></canvas><span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span></div>
+          <div class="empty" hidden><b>画布等着你的第一行字</b><a href="#writing">输入文字</a></div>
+        </div>
+        <div class="caption"><span><span id="ink-chip"></span><span id="caption"></span></span><span class="dimensions" id="dimensions"></span></div>
+      </section>
+      <section class="card settings" aria-labelledby="editor-title">
+        <div class="panel-head"><h2 id="editor-title"><i data-icon="sliders"></i>排版设置</h2></div>
+        <div class="settings-body">
+          <div class="field"><div class="field-head"><label for="writing">文字内容</label><button class="text-button" id="sample"><i data-icon="shuffle"></i>换个示例</button></div>
+            <div class="text-box"><textarea id="writing" rows="4" placeholder="输入或粘贴文字，每行一句" spellcheck="false"></textarea><div id="counter"></div></div>
+          </div>
+          <fieldset><legend>海报版式</legend><div class="layouts" id="layouts"></div></fieldset>
+          <div class="field"><label for="font">海报字体</label><div class="select-wrap"><span class="font-icon" aria-hidden="true">Aa</span><select id="font"></select><i data-icon="chevron"></i></div></div>
+          <div class="field palette-field"><div class="field-head"><span id="palette-label" class="label">印刷配色</span><span id="color-name" class="secondary"></span></div><div class="swatches" id="palettes" role="group" aria-labelledby="palette-label"></div></div>
+          <fieldset><legend>画幅比例</legend><div id="ratios" class="ratios"></div></fieldset>
+        </div>
+      </section>
+    </div>
+
+  </main>
+  <dialog id="output" aria-labelledby="dialog-title"><div class="dialog-head"><h2 id="dialog-title">海报预览</h2><button class="icon-button" id="close-dialog" aria-label="关闭"><i data-icon="close"></i></button></div>
+    <div class="image-well"><img id="result-image" alt="当前排版的完整海报"></div>
+    <div id="export-tools"><p id="file-info"></p><div class="dialog-actions"><button id="copy-image" class="button"><i data-icon="copy"></i>复制图片</button><a id="download" class="button primary" download><i data-icon="download"></i>保存 PNG</a></div><small>手机也可以长按上方图片保存。</small></div>
+  </dialog>
+  <div id="message" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body></html>
