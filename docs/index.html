@@ -20,13 +20,13 @@
   <main class="frame">
     <div class="intro">
       <div><h1>等宽海报工坊<span aria-hidden="true">.</span></h1><p>写下几行字，让每一行恰好等宽。</p></div>
-      <div class="actions"><a class="jump-preview" href="#preview" hidden><i data-icon="frame"></i>看画布</a><button id="copy" class="button" disabled><i data-icon="copy"></i>复制排版</button><button id="export" class="button primary" disabled><i data-icon="download"></i>导出海报</button></div>
+      <div class="actions"><button id="copy" class="button" disabled><i data-icon="copy"></i>复制排版</button><button id="export" class="button primary" disabled><i data-icon="download"></i>导出海报</button></div>
     </div>
     <div class="workspace">
       <section class="card preview" id="preview" aria-labelledby="preview-title">
         <div class="panel-head"><h2 id="preview-title"><i data-icon="frame"></i>画布预览</h2><button id="enlarge" class="icon-button" aria-label="放大预览" title="放大预览"><i data-icon="expand"></i></button></div>
         <div class="stage">
-          <div class="paper"><canvas id="poster" width="1440" height="1920" role="img" aria-label="等宽海报预览"></canvas><span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span></div>
+          <div class="paper"><canvas id="poster" width="1440" height="1920" role="img" aria-label="等宽海报预览"></canvas><button id="open-paper" type="button" aria-label="放大海报" disabled></button><span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span></div>
           <div class="empty" hidden><b>画布等着你的第一行字</b><a href="#writing">输入文字</a></div>
         </div>
         <div class="caption"><span><span id="ink-chip"></span><span id="caption"></span></span><span class="dimensions" id="dimensions"></span></div>
@@ -34,13 +34,21 @@
       <section class="card settings" aria-labelledby="editor-title">
         <div class="panel-head"><h2 id="editor-title"><i data-icon="sliders"></i>排版设置</h2></div>
         <div class="settings-body">
-          <div class="field"><div class="field-head"><label for="writing">文字内容</label><button class="text-button" id="sample"><i data-icon="shuffle"></i>换个示例</button></div>
-            <div class="text-box"><textarea id="writing" rows="4" placeholder="输入或粘贴文字，每行一句" spellcheck="false"></textarea><div id="counter"></div></div>
+          <div class="editor-switch">
+            <div role="tablist" aria-label="编辑海报">
+              <button id="write-tab" type="button" role="tab" aria-selected="true" aria-controls="writing-panel">文字</button>
+              <button id="style-tab" type="button" role="tab" aria-selected="false" aria-controls="style-panel" tabindex="-1">样式</button>
+            </div>
           </div>
-          <fieldset><legend>海报版式</legend><div class="layouts" id="layouts"></div></fieldset>
+          <div class="field" id="writing-panel"><div class="field-head"><label id="writing-label" for="writing">文字内容</label><button class="text-button" id="sample"><i data-icon="shuffle"></i>换个示例</button></div>
+            <div class="text-box"><textarea id="writing" aria-labelledby="writing-label" rows="4" placeholder="输入或粘贴文字，每行一句" spellcheck="false"></textarea><div id="counter"></div></div>
+          </div>
+          <div id="style-panel">
+            <fieldset><legend>海报版式</legend><div class="layouts" id="layouts"></div></fieldset>
           <div class="field"><label for="font">海报字体</label><div class="select-wrap"><span class="font-icon" aria-hidden="true">Aa</span><select id="font"></select><i data-icon="chevron"></i></div></div>
           <div class="field palette-field"><div class="field-head"><span id="palette-label" class="label">印刷配色</span><span id="color-name" class="secondary"></span></div><div class="swatches" id="palettes" role="group" aria-labelledby="palette-label"></div></div>
           <fieldset><legend>画幅比例</legend><div id="ratios" class="ratios"></div></fieldset>
+          </div>
         </div>
       </section>
     </div>

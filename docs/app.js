@@ -71,7 +71,7 @@ function notify(message) {
   messageTimer=setTimeout(()=>node.classList.remove('show'),3100);
 }
 function ready(enabled) {
-  for (const id of ['#export','#copy','#enlarge']) $(id).disabled=!enabled;
+  for (const id of ['#export','#copy','#enlarge','#open-paper']) $(id).disabled=!enabled;
 }
 function update() {
   const token=++revision, texts=linesOf(state.text);
@@ -163,9 +163,64 @@ $('#copy-image').addEventListener('click',async()=>{
   try{await navigator.clipboard.write([new ClipboardItem({'image/png':imageBlob})]);notify('海报图片已复制。');}
   catch{notify('浏览器限制了图片复制，可使用「保存 PNG」。');}
 });
-update();
+// Both layouts use the same controls so edits, drafts and clipboard actions
+// remain in sync when a phone rotates or the editor window is resized.
+const mobile = matchMedia('(max-width: 680px), (max-width: 960px) and (max-height: 520px) and (pointer: coarse)');
+const tabs = [...document.querySelectorAll('.editor-switch [role="tab"]')];
+let selectedTab = tabs[0];
 
-const previewJump = $('.jump-preview');
-new IntersectionObserver(([entry]) => {
-  previewJump.hidden=entry.isIntersecting;
-}).observe($('#preview'));
+function selectEditorTab(next) {
+  selectedTab = next;
+  for (const tab of tabs) {
+    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+    const active = tab === selectedTab;
+    tab.setAttribute('aria-selected', String(active));
+    tab.tabIndex = active ? 0 : -1;
+    panel.hidden = mobile.matches && !active;
+    if (mobile.matches) {
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', tab.id);
+    } else {
+      panel.removeAttribute('role');
+      panel.removeAttribute('aria-labelledby');
+    }
+  }
+  $('#copy').hidden = mobile.matches && selectedTab !== tabs[0];
+}
+
+function placeEditorActions() {
+  if (mobile.matches) {
+    $('.mast-inner').append($('#export'));
+    $('.editor-switch').append($('#copy'));
+  } else {
+    $('.actions').append($('#copy'), $('#export'));
+  }
+  selectEditorTab(selectedTab);
+}
+
+for (const tab of tabs) {
+  tab.addEventListener('click', () => selectEditorTab(tab));
+  tab.addEventListener('keydown', event => {
+    const targets = {
+      ArrowLeft: tabs[1 - tabs.indexOf(tab)],
+      ArrowRight: tabs[1 - tabs.indexOf(tab)],
+      Home: tabs[0],
+      End: tabs[1],
+    };
+    const target = targets[event.key];
+    if (!target) return;
+    event.preventDefault();
+    selectEditorTab(target);
+    target.focus();
+  });
+}
+
+$('.empty a').addEventListener('click', event => {
+  event.preventDefault();
+  selectEditorTab(tabs[0]);
+  $('#writing').focus();
+});
+$('#open-paper').addEventListener('click', () => showImage(false));
+mobile.addEventListener('change', placeEditorActions);
+placeEditorActions();
+update();
